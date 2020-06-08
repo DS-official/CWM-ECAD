@@ -31,9 +31,9 @@ module counter(
     reg [7:0] counter_out;
 
     //initial value of counter_out
-    initial begin
-    counter_out = 8'b0;
-    end
+    //initial begin
+    //counter_out = 8'b0;
+    //end
 
     //Todo: add user logic
     always @ (posedge clk) begin

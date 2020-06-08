@@ -39,7 +39,7 @@ module top_tb(
 
     //check if reset works
     initial begin
-      rst = 1
+      rst = 1;
       err = 0;
       forever begin
         #CLK_PERIOD
@@ -48,7 +48,7 @@ module top_tb(
           $display("***TEST FAILED! reset is 1 but ctr is not 0");
           err=1;
         end
-        if(rst) rst = 0
+        if(rst) rst = 0;
       end
     end
 
