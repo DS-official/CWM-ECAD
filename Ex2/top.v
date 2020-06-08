@@ -30,9 +30,10 @@ module mux(
 
     //Todo: define registers and wires here
     wire out;
+    
 
     //Todo: define your logic here
     // is sel == 1, then out = b, else out = a
-    assign out = sel ? b : a;
+    assign #5 out = sel ? b : a;
 
 endmodule
