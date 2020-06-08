@@ -1,6 +1,6 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Exercise #1 
-// Student Name:
+// Student Name: Devang Sehgal
 // Date: 
 //
 //  Description: In this exercise, you need to design a logical unit, where the  
@@ -30,7 +30,14 @@ module logicalunit(
     );
     
     wire   out;
-         
-      //Todo: add you logic here
+    wire [1:0] ab = {a,b}; 
+    //Todo: add you logic here
+    //Use of simple nested if statements 
+    assign out = (ab == 2'd00)?func[0]:
+    	(ab == 2'd01)?func[1]:
+    	(ab == 2'd10)?func[2]:
+    //If ab is not 00,01,10, then it must be 11
+    	func[3];
+	
 
 endmodule
