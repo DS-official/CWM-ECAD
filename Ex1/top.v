@@ -1,9 +1,9 @@
 //////////////////////////////////////////////////////////////////////////////////
-// Exercise #1 
+// Exercise #1
 // Student Name: Devang Sehgal
-// Date: 
+// Date: 8 June 2020
 //
-//  Description: In this exercise, you need to design a logical unit, where the  
+//  Description: In this exercise, you need to design a logical unit, where the
 //  output acts according to the following truth table:
 //
 //  a | b | out
@@ -28,16 +28,16 @@ module logicalunit(
     input [3:0] func,
     output out
     );
-    
+
     wire   out;
-    wire [1:0] ab = {a,b}; 
+    wire [1:0] ab = {a,b};
     //Todo: add you logic here
-    //Use of simple nested if statements 
+    //Use of simple nested ?: statements
     assign out = (ab == 2'd00)?func[0]:
     	(ab == 2'd01)?func[1]:
     	(ab == 2'd10)?func[2]:
-    //If ab is not 00,01,10, then it must be 11
+    //If ab is not 00,01, 10, then it must be 11
     	func[3];
-	
+
 
 endmodule
