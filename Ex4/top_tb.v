@@ -39,6 +39,8 @@ module top_tb(
     initial begin
       err = 0;
       rst = 1;
+      btn = 0;
+      init = 0;
       forever begin
       #CLK_PERIOD
 
@@ -49,7 +51,31 @@ module top_tb(
         err=1;
       end
       if(rst) rst = 0;
-      
+
+      if(init && ((prev_throw == 3'd000)||(prev_throw == 3'd111)) && (throw != 3'd001))
+      begin
+        $display("***TEST FAILED! '000' and '111' do not redirect properly");
+        err=1;
+      end
+
+      //check button 0 keeps same
+      if(init && (!button) && (prev_throw != throw) && ((prev_throw != 3'd000)||(prev_throw != 3'd111)))
+      begin
+        $display("***TEST FAILED! button = 0 does not stop the throw");
+        err=1;
+      end
+
+      //check button 1 increments where it has to
+      if(init && button && (throw != (prev_throw + 1) )  && ((prev_throw != 3'd000)||(prev_throw != 3'd111)))
+      begin
+        $display("***TEST FAILED! button = 1 does not increment");
+        err=1;
+      end
+
+
+      init = 1;
+      prev_throw = throw;
+
         end
     end
 
@@ -58,7 +84,7 @@ module top_tb(
 
     //Todo: Finish test, check for success
     initial begin
-      #50
+      #200
       if (err==0)
         $display("***TEST PASSED! :) ***");
       $finish;
