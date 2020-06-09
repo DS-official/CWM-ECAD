@@ -20,6 +20,7 @@ module top_tb(
     reg rst;
     reg err;
     reg btn;
+    reg init;
 
     wire [2:0] throw;
     reg [2:0] prev_throw;
@@ -52,28 +53,35 @@ module top_tb(
       end
       if(rst) rst = 0;
 
-      if(init && ((prev_throw == 3'd000)||(prev_throw == 3'd111)) && (throw != 3'd001))
+      if(init && ((prev_throw == 3'b000)||(prev_throw == 3'b111)) && (throw != 3'b001))
       begin
         $display("***TEST FAILED! '000' and '111' do not redirect properly");
         err=1;
       end
 
       //check button 0 keeps same
-      if(init && (!button) && (prev_throw != throw) && ((prev_throw != 3'd000)||(prev_throw != 3'd111)))
+      if(init && (!btn) && (prev_throw != throw) && (prev_throw != 3'b000)&&(prev_throw != 3'b111))
       begin
         $display("***TEST FAILED! button = 0 does not stop the throw");
         err=1;
       end
 
       //check button 1 increments where it has to
-      if(init && button && (throw != (prev_throw + 1) )  && ((prev_throw != 3'd000)||(prev_throw != 3'd111)))
+      if(init && btn && (throw != (prev_throw + 1) )  && (prev_throw != 3'b000)&&(prev_throw != 3'b111) &&(prev_throw != 3'b110))
       begin
         $display("***TEST FAILED! button = 1 does not increment");
         err=1;
       end
 
+      if(init && btn &&(prev_throw == 3'b110) && (throw != 3'b001))
+      begin
+        $display("***TEST FAILED! button = 1 does not work with 110");
+        err=1;
+      end
+
 
       init = 1;
+      btn = ~btn;
       prev_throw = throw;
 
         end
