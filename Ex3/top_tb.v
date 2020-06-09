@@ -22,9 +22,10 @@ module top_tb(
     reg ebl;
     reg dir;
     reg err;
+    reg init; // flag to check if we are in first iteration
 
     wire [7:0] ctr;
-    wire [7:0] prev_ctr;
+    reg [7:0] prev_ctr;
 
 
 
@@ -39,18 +40,35 @@ module top_tb(
 
     //Todo: User logic
 
-    //check if reset works
+
     initial begin
       rst = 1;
       err = 0;
+      ebl = 0;
+      dir = 1;
+      init = 0
+      reg err;
+
       forever begin
         #CLK_PERIOD
+
+        //check if reset works
         if ((rst == 1) && (ctr != 8'b0))
         begin
           $display("***TEST FAILED! reset is 1 but ctr is not 0");
           err=1;
         end
         if(rst) rst = 0;
+
+        //check if enable keeps it unchanged
+        if(init && (ebl==0) && (rst!=1) && (prev_ctr!=ctr))
+        begin
+          $display("***TEST FAILED! enable does not keep ctr same");
+          err=1;
+        end
+        
+        prev_ctr = ctr;
+        if(!init) init = 1;
       end
     end
 
