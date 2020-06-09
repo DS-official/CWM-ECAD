@@ -6,11 +6,11 @@
 `timescale 1ns / 100ps
 
 module top_tb(
-   //No ports are defined! 
+   //No ports are defined!
    );
 
-   
-    //Parameters    
+
+    //Parameters
     parameter CLK_PERIOD = 10;
 
     //Registers
@@ -21,7 +21,7 @@ module top_tb(
 
     //Wires
     wire out;
-    
+
 
     //An initial block that creates the clock
     initial
@@ -30,7 +30,7 @@ module top_tb(
        forever
          #(CLK_PERIOD/2) clk=~clk;
      end
-    
+
      //An initial block that drives the logic and tests output
      initial begin
        ab=0;
@@ -49,12 +49,12 @@ module top_tb(
 
      //An initial block that ends the simulation, and declares success (if valid)
      initial begin
-        #50 
+        #50
         if (err==0)
           $display("***TEST PASSED! :) ***");
         $finish;
       end
-     
+
      //The instantiation of the user's module
      logicalunit top (
      .a (ab[1]),
@@ -62,7 +62,7 @@ module top_tb(
      .func (func),
      .out (out)
      );
-     
 
-     
+
+
 endmodule
