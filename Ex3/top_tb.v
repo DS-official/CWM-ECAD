@@ -23,6 +23,7 @@ module top_tb(
     reg dir;
     reg err;
     reg init; // flag to check if we are in first iteration
+    reg count; // counter
 
     wire [7:0] ctr;
     reg [7:0] prev_ctr;
@@ -47,6 +48,7 @@ module top_tb(
       ebl = 0;
       dir = 1;
       init = 0;
+      count = 0;
 
       forever begin
         #CLK_PERIOD
@@ -72,15 +74,25 @@ module top_tb(
           $display("***TEST FAILED! dir =1 does not increment counter");
           err=1;
         end
+
+	// check if direction takes it down
+	if(init && ebl && (rst!=1) && (!dir) && (ctr != (prev_ctr-1)))
+        begin
+          $display("***TEST FAILED! dir =1 does not increment counter");
+          err=1;
+        end
+
         prev_ctr = ctr;
         ebl = ~ebl;
+	count = count + 1;
+	if (count % 4 == 0) dir = ~dir;
         if(!init) init = 1;
       end
     end
 
     //Todo: Finish test, check for success
     initial begin
-      #50
+      #100
       if (err==0)
         $display("***TEST PASSED! :) ***");
       $finish;
