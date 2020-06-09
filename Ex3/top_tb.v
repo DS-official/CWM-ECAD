@@ -1,13 +1,15 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Test bench for Exercise #3 - Up/Down counter
-// Student Name:
-// Date:
+// Student Name:Devang Sehgal
+// Date:9/6/2020
 //
 // Description: A testbench module to test Ex3 - counter
 // Guidance: start with simple tests of the module (how should it react to each
 // control signal?). Don't try to test everything at once - validate one part of
 // the functionality at a time.
 //////////////////////////////////////////////////////////////////////////////////
+// all the tests are writtent below, but check change direction to check if down direction also works
+
 `timescale 1ns / 100ps
 
 module top_tb(
@@ -78,21 +80,22 @@ module top_tb(
 	// check if direction takes it down
 	if(init && ebl && (rst!=1) && (!dir) && (ctr != (prev_ctr-1)))
         begin
-          $display("***TEST FAILED! dir =1 does not increment counter");
+          $display("***TEST FAILED! dir =0 does not decrement counter");
           err=1;
         end
 
         prev_ctr = ctr;
         ebl = ~ebl;
+	//if(count%4 == 3) dir = ~dir;
+	//if ((count & 2'b11) == 2'b11) dir = ~dir;
 	count = count + 1;
-	if (count % 4 == 0) dir = ~dir;
         if(!init) init = 1;
       end
     end
 
     //Todo: Finish test, check for success
     initial begin
-      #100
+      #200
       if (err==0)
         $display("***TEST PASSED! :) ***");
       $finish;
