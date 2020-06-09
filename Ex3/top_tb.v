@@ -46,8 +46,7 @@ module top_tb(
       err = 0;
       ebl = 0;
       dir = 1;
-      init = 0
-      reg err;
+      init = 0;
 
       forever begin
         #CLK_PERIOD
