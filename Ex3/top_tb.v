@@ -65,8 +65,15 @@ module top_tb(
           $display("***TEST FAILED! enable does not keep ctr same");
           err=1;
         end
-        
+
+        // check if direction pushes it up
+        if(init && ebl && (rst!=1) && dir && (ctr != (prev_ctr+1)))
+        begin
+          $display("***TEST FAILED! dir =1 does not increment counter");
+          err=1;
+        end
         prev_ctr = ctr;
+        ebl = ~ebl;
         if(!init) init = 1;
       end
     end
