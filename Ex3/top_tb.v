@@ -21,9 +21,11 @@ module top_tb(
     reg rst;
     reg ebl;
     reg dir;
-    reg [7:0] ctr;
-    reg [7:0] prev_ctr;
     reg err;
+
+    wire [7:0] ctr;
+    wire [7:0] prev_ctr;
+
 
 
     //Todo: Clock generation
