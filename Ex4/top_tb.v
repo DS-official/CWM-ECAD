@@ -38,8 +38,17 @@ module top_tb(
     //Todo: User logic
     initial begin
       err = 0;
-      #6
+      rst = 1;
       forever begin
+      #CLK_PERIOD
+
+      //check if reset works
+      if (rst && (throw != 3'b0))
+      begin
+        $display("***TEST FAILED! reset is 1 but ctr is not 0");
+        err=1;
+      end
+      if(rst) rst = 0;
       
         end
     end
