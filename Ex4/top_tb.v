@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Test bench for Exercise #4 - Electronic Dice
-// Student Name:
-// Date:
+// Student Name:Devang Sehgal
+// Date:9 June 2020
 //
 // Description: A testbench module to test Ex4 - Electronic Dice
 // You need to write the whole file
@@ -49,7 +49,7 @@ module top_tb(
 
     //Todo: Finish test, check for success
     initial begin
-      #200
+      #50
       if (err==0)
         $display("***TEST PASSED! :) ***");
       $finish;
