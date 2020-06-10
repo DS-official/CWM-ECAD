@@ -20,12 +20,12 @@ module top_tb(
     reg sel;
     reg err;
     reg init;
-    reg [2:0] count;
+    reg [3:0] count;
 
     wire [2:0] result;
-    reg [2:0] prev_result;
 
-
+    wire [2:0] lit;
+    wire [2:0] throwl
 
     //Todo: Clock generation
     initial
@@ -55,10 +55,23 @@ module top_tb(
        end
        if(rst) rst = 0;
 
+       //our sub modules work. so test by comparing against them
+       if (init && (sel==0) && (result != throw))
+       begin
+         $display("***TEST FAILED! sel = 0 but result is not throw");
+         err=1;
+       end
+
+       if (init && (sel==1) && (result != lit))
+       begin
+         $display("***TEST FAILED! sel = 1 but result is not light");
+         err=1;
+       end
+
 
        count = count + 1;
-       if(count == 2'b00) sel = ~sel;
-       prev_result = result;
+       if(count == 2'b000) sel = ~sel;
+       if(count == 3'b100) btn = ~btn;
        init = 1;
          end
      end
@@ -79,5 +92,23 @@ module top_tb(
         .sel (sel),
         .result (result)
         );
+
+
+    //instantiate dice
+    dice inst_dice(
+        .rst (rst),
+        .clk (clk),
+        .button (btn),
+        .throw (throw)
+        );
+    //instantiate light
+    traffic inst_traffic(
+        .clk (clk),
+        .red (lit[2]),
+        .amber (lit[1]),
+        .green (lit[0])
+        );
+
+
 
 endmodule
