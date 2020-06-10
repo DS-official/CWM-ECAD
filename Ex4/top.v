@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Exercise #4
 // Student Name:Devang Sehgal
-// Date:9 June 2020 
+// Date:9 June 2020
 //
 //  Description: In this exercise, you need to design an electronic dice, following
 //  the diagram provided in the exercises documentation. The dice rolls as long as
@@ -32,7 +32,7 @@ module dice(
     //Todo: add user logic
     always @ (posedge clk) begin
     if(rst)
-        throw <= 3'b0;
+        throw <= 3'b001;
     else
         case (throw)
             3'b000: throw <= (button)?3'b001:3'b001;
