@@ -45,7 +45,7 @@ module top_tb(
        #CLK_PERIOD
 
        //check if reset works
-       if (rst && (sel==0) && (result != 3'b0) )
+       if (rst && (sel==0) && (result != 3'b001) )
        begin
          $display("***TEST FAILED! reset is 1 and sel = 0 but result is not 0");
          err=1;

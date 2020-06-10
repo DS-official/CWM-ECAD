@@ -21,6 +21,8 @@ create_fileset -constrset -quiet constraints
 #set_property is_enabled false [get_files ${project_constraints}]
 
 #Todo: add verilog modules here
+read_verilog "dice.v"
+read_verilog "traffic.v"
 read_verilog "top.v"
 read_verilog "top_tb.v"
 
