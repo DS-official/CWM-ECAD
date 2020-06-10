@@ -55,12 +55,6 @@ module top_tb(
        end
        if(rst) rst = 0;
 
-       // check throw
-       if(init && (!btn) && (prev_result != throw) && (prev_result != 3'b000)&&(prev_result != 3'b111) && (sel == 0))
-       begin
-         $display("***TEST FAILED! button = 0 does not stop the throw");
-         err=1;
-       end
 
        count = count + 1;
        if(count == 2'b00) sel = ~sel;
