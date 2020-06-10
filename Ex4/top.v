@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Exercise #4
 // Student Name:Devang Sehgal
-// Date:9 June 2020
+// Date:9 June 2020 (but completed 10 June)
 //
 //  Description: In this exercise, you need to design an electronic dice, following
 //  the diagram provided in the exercises documentation. The dice rolls as long as
