@@ -42,25 +42,19 @@ module traffic(
             green <= 1;
         end
         else begin
-            if((red==1)&&(amber==1)&&(green==0)) begin
+            if((red==0)&&(amber==0)&&(green==1)) begin
                 red <= 0;
-                amber <= 0;
-                green <= 1;
+                amber <= 1;
+                green <= 0;
             end
+        // now default as red,0,0
             else begin
-                if((red==0)&&(amber==0)&&(green==1)) begin
-                    red <= 0;
-                    amber <= 1;
-                    green <= 0;
-                end
-                // now default as red,0,0
-                else begin
-                    red <= 1;
-                    amber <= 0;
-                    green <= 1;
-                end
+                red <= 1;
+                amber <= 0;
+                green <= 0;
             end
         end
+    end
     end
 
     endmodule
