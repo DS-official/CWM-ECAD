@@ -20,8 +20,10 @@ module top_tb(
     reg sel;
     reg err;
     reg init;
+    reg [2:0] count;
 
     wire [2:0] result;
+    reg [2:0] prev_result;
 
 
 
@@ -38,8 +40,9 @@ module top_tb(
        err = 0;
        rst = 1;
        sel = 0;
-       btn = 1;
+       btn = 0;
        init = 0;
+       count = 0;
        #CLK_PERIOD
        forever begin
        #CLK_PERIOD
@@ -52,13 +55,23 @@ module top_tb(
        end
        if(rst) rst = 0;
 
+       // check throw
+       if(init && (!btn) && (prev_result != throw) && (prev_result != 3'b000)&&(prev_result != 3'b111) && (sel == 0))
+       begin
+         $display("***TEST FAILED! button = 0 does not stop the throw");
+         err=1;
+       end
 
+       count = count + 1;
+       if(count == 2'b00) sel = ~sel;
+       prev_result = result;
+       init = 1;
          end
      end
 
     //Todo: Finish test, check for success
     initial begin
-      #200
+      #300
       if (err==0)
         $display("***TEST PASSED! :) ***");
       $finish;
