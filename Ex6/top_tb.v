@@ -25,11 +25,10 @@ module top_tb(
     wire [2:0] result;
 
     wire [2:0] lit;
-    wire [2:0] throwl
+    wire [2:0] throw;
 
     //Todo: Clock generation
-    initial
-    begin
+    initial begin
        clk = 1'b0;
        forever
          #(CLK_PERIOD/2) clk=~clk;
