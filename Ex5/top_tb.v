@@ -81,7 +81,7 @@ module top_tb(
       $finish;
     end
 
-    //Todo: Instantiate dice module
+    //Todo: Instantiate traffic module
     traffic top(
         .clk (clk),
         .red (lit[2]),
