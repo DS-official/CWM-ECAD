@@ -46,9 +46,9 @@ module top_tb(
       #CLK_PERIOD
 
       //check if reset works
-      if (rst && (throw != 3'b0))
+      if (rst && (throw != 3'b001))
       begin
-        $display("***TEST FAILED! reset is 1 but ctr is not 0");
+        $display("***TEST FAILED! reset is 1 but dice is not 1");
         err=1;
       end
       if(rst) rst = 0;
