@@ -39,7 +39,7 @@ module top_tb(
      //Todo: User logic
      initial begin
        err = 0;
-       rst = 0;
+       rst = 1;
        init = 0;
        count = 0;
        a = 1;
