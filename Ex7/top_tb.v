@@ -40,12 +40,12 @@ module top_tb(
        err = 0;
        init = 0;
        count = 0;
-       a = 0;
-       b = 0;
+       a = 1;
+       b = 2;
        read = 0;
        #CLK_PERIOD
        forever begin
-       #20
+       #30
 
        //check if read works
         if (init && (read==0) && (result != prev_result) )
