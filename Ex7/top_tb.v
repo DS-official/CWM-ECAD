@@ -45,7 +45,7 @@ module top_tb(
        read = 0;
        #CLK_PERIOD
        forever begin
-       #CLK_PERIOD
+       #20
 
        //check if read works
         if (init && (read==0) && (result != prev_result) )
