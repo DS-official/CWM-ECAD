@@ -37,6 +37,8 @@ module multiply_2(
     wire s_axi_rresp;
     wire s_axi_rvalid;
 
+    assign address = {24'd0, a,b, 2'd0};
+
 
 times_table inst (
   .rsta_busy(rsta_busy),          // output wire rsta_busy
