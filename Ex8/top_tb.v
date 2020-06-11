@@ -44,10 +44,10 @@ module top_tb(
        count = 0;
        a = 1;
        b = 2;
-       read = 0;
+       enable = 0;
        #CLK_PERIOD
        forever begin
-       #50
+       #30
 
        //check if reset works
        if (!rst && (result!=0))
@@ -86,7 +86,7 @@ module top_tb(
 
      //Todo: Finish test, check for success
      initial begin
-       #500
+       #600
        if (err==0)
          $display("***TEST PASSED! :) ***");
        $finish;

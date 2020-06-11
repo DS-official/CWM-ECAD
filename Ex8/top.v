@@ -31,7 +31,7 @@ module multiply_2(
     wire rstb_busy;
     wire s_axi_awready;
     wire s_axi_wready;
-    wire [1:0] s_axi_bresp
+    wire [1:0] s_axi_bresp;
     wire s_axi_bvalid;
     wire s_axi_arready;
     wire s_axi_rresp;
