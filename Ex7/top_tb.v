@@ -42,7 +42,7 @@ module top_tb(
        count = 0;
        a = 0;
        b = 0;
-       read = 0;       
+       read = 0;
        #CLK_PERIOD
        forever begin
        #CLK_PERIOD
@@ -57,17 +57,18 @@ module top_tb(
 	//check for an arbitrary number
 	if (read && (a==3'd3) && (b == 3'd3) && (result != 6'd9))
         begin
-          $display("***TEST FAILED! 3*5 is not coming as 15");
+          $display("***TEST FAILED! 3*3 is not coming as 9");
           err=1;
         end
-     
 
-        init = 1;
+
+    init = 1;
 	count = count + 1;
 	a = a+1;
-	b = b+1;
+	if (a == 0) b = b+1;
 	prev_result = result;
-	if(count == 4'b1010) read = ~read;	
+    read = 1;
+	if(count == 4'b1010) read = 0;
          end
      end
 
