@@ -20,7 +20,7 @@ module top_tb(
     reg rst;
     reg [2:0] a;
     reg [2:0] b;
-    reg read;
+    reg enable;
     reg [3:0] count;
 
     wire [5:0] result;
@@ -39,6 +39,7 @@ module top_tb(
      //Todo: User logic
      initial begin
        err = 0;
+       rst = 0;
        init = 0;
        count = 0;
        a = 1;
@@ -46,17 +47,25 @@ module top_tb(
        read = 0;
        #CLK_PERIOD
        forever begin
-       #30
+       #50
 
-       //check if read works
-        if (init && (read==0) && (result != prev_result) )
+       //check if reset works
+       if (!rst && (result!=0))
+       begin
+         $display("***TEST FAILED! enable not working");
+         err=1;
+       end
+       if(rst) rst = 0;
+
+       //check if enable works
+        if (init && (enable==0) && (result != prev_result) )
         begin
           $display("***TEST FAILED! enable not working");
           err=1;
         end
 
 	//check for an arbitrary number
-	if (read && (a==3'd3) && (b == 3'd3) && (result != 6'd9))
+	if (enable && (a==3'd3) && (b == 3'd3) && (result != 6'd9))
         begin
           $display("***TEST FAILED! 3*3 is not coming as 9");
           err=1;
@@ -68,8 +77,8 @@ module top_tb(
 	a = a+1;
 	if (a == 0) b = b+1;
 	prev_result = result;
-    read = 1;
-	if(count == 4'b1010) read = 0;
+    enable = 1;
+	if(count == 4'b1010) enable = 0;
          end
      end
 
@@ -89,7 +98,7 @@ module top_tb(
          .rst (rst),
          .a (a),
          .b (b),
-         .read (read),
+         .enable (enable),
          .result (result)
          );
 
