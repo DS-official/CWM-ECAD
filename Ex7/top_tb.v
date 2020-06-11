@@ -55,7 +55,7 @@ module top_tb(
         end
 
 	//check for an arbitrary number
-	if (read && (a==3'd3) && (b == 3'd5) && (result != 6'd15))
+	if (read && (a==3'd3) && (b == 3'd3) && (result != 6'd9))
         begin
           $display("***TEST FAILED! 3*5 is not coming as 15");
           err=1;
@@ -75,7 +75,7 @@ module top_tb(
 
      //Todo: Finish test, check for success
      initial begin
-       #1000
+       #500
        if (err==0)
          $display("***TEST PASSED! :) ***");
        $finish;
