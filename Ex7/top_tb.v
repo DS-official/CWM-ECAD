@@ -20,8 +20,10 @@ module top_tb(
     reg [2:0] a;
     reg [2:0] b;
     reg read;
+    reg [3:0] count;
 
     wire [5:0] result;
+    reg [5:0] prev_result;
 
     //Todo: Clock generation
     initial begin
@@ -37,19 +39,35 @@ module top_tb(
      initial begin
        err = 0;
        init = 0;
+       count = 0;
+       a = 0;
+       b = 0;
+       read = 0;       
        #CLK_PERIOD
        forever begin
        #CLK_PERIOD
 
-       //check if reset works
-       if (rst && (sel==0) && (result != 3'b001) )
-       begin
-         $display("***TEST FAILED! reset is 1 and sel = 0 but result is not 0");
-         err=1;
-       end
-       if(rst) rst = 0;
+       //check if read works
+        if (init && (read==0) && (result != prev_result) )
+        begin
+          $display("***TEST FAILED! enable not working");
+          err=1;
+        end
 
-       init = 1;
+	//check for an arbitrary number
+	if (read && (a==3'd3) && (b == 3'd5) && (result != 6'd15))
+        begin
+          $display("***TEST FAILED! 3*5 is not coming as 15");
+          err=1;
+        end
+     
+
+        init = 1;
+	count = count + 1;
+	a = a+1;
+	b = b+1;
+	prev_result = result;
+	if(count == 4'b1010) read = ~read;	
          end
      end
 
