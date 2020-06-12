@@ -11,7 +11,7 @@ set test_name "test"
 
 # Build project.
 create_project -name ${design} -force -dir "." -part ${device}
-set_property source_mgmt_mode DisplayOnly [current_project]  
+set_property source_mgmt_mode DisplayOnly [current_project]
 set_property top ${top} [current_fileset]
 puts "Creating Project"
 
@@ -42,4 +42,4 @@ set_property top_lib xil_defaultlib [get_filesets sim_1]
 update_compile_order -fileset sim_1
 
 launch_simulation
-run 600ns
+run 2000ns
