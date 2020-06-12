@@ -85,7 +85,7 @@ module top_tb(
 
 
     //Todo: Finish test, check for success
-    initial 
+    initial
     begin
         #400
         //if (err==0)
