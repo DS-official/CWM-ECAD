@@ -87,10 +87,9 @@ module top_tb(
     //Todo: Finish test, check for success
     initial
     begin
-        #400
-        //if (err==0)
-        $display("***TEST PASSED! :) ***");
-	#120
+        #500
+        if (err==0)
+            $display("***TEST PASSED! :) ***");
         $finish;
     end
 
