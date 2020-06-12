@@ -65,16 +65,16 @@ module top_tb(
         end
 
         //check for an arbitrary number
-	    if (enable && (a==3'd3) && (b==3'd3) && (result != 6'd9))
+	if (enable && (a==3'd3) && (b==3'd3) && (result != 6'd9))
         begin
             $display("***TEST FAILED! 3*3 is not coming as 9");
             err = 1;
         end
 
         init = 1;
-	    count = count + 1;
-	    a = a + 1;
-	    if (a == 0) b = b+1;
+	count = count + 1;
+	a = a + 1;
+	if (a == 0) b = b+1;
         enable = 1;
         if(count == 4'b1010) enable = 0;
         prev_result = result;
@@ -85,10 +85,11 @@ module top_tb(
 
 
     //Todo: Finish test, check for success
-    initial begin
+    initial 
+    begin
         #400
         //if (err==0)
-            $display("***TEST PASSED! :) ***");
+        $display("***TEST PASSED! :) ***");
 	#100
         $finish;
     end
